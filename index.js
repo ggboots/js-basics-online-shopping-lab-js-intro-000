@@ -65,3 +65,28 @@ function generateCartDescription(){
 
   return `${cartDescription}.`
 }
+
+function searchCartForItemToRemove(itemName){
+  var searchResult
+  for (var i = 0; i < getCart().length; i++) {
+    if (getCart()[i].itemName === itemName) {searchResult = getCart()[i]}
+  }
+  return searchResult
+}
+
+function sumUpPrices() {
+  var sum = 0
+  for (var i = 0; i < getCart().length; i++) {
+    sum = sum + getCart()[i].itemPrice
+  }
+  return sum 
+}
+
+function notifyUserThereIsNoItemToRemove() {
+  return 'That item is not in your cart.'
+}
+
+function removeItemFromCart(itemToRemove) {
+  var indexOfItemToRemove = cart.indexOf(itemToRemove)
+  getCart().splice(indexOfItemToRemove,1)
+}
