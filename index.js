@@ -10,9 +10,9 @@ function setCart(c) {
 }
 
 function addToCart(item) {
- var item = generateCartItem(item)
- getCart().push(item)
- return `${item.itemName} has been added to your cart.`
+  var item = generateCartItem(item)
+  getCart().push(item)
+  return `${item.itemName} has been added to your cart.`
 }
 
 function viewCart() {
@@ -24,13 +24,13 @@ function total() {
   return sum
 }
 
-function removeFromCart(item) {
+function removeFromCart(itemName) {
   var itemToRemove = searchCartForItemToRemove(itemName)
   return itemToRemove ? removeItemFromCart(itemToRemove) : notifyUserThereIsNoItemToRemove()
 }
 
 function placeOrder(cardNumber) {
-  if (arguments[0] == undefined){
+  if (arguments[0] == undefined) {
     return "Sorry, we don't have a credit card on file for you."
   } else {
     var sumToCharge = total()
@@ -39,25 +39,26 @@ function placeOrder(cardNumber) {
   }
 }
 
-function getRandomInt(min, max){
+// helper functions
+function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function generateCartItem(itemName){
+function generateCartItem(itemName) {
   return {
-    itemName: itemName,
+    itemName:itemName,
     itemPrice:getRandomInt(1, 100)
   }
 }
 
-function generateCartDescription(){
-  var cartDescription = 'In your cart, you have'
-  if ( getCart().length >= 1) {
+function generateCartDescription() {
+  var cartDescription = 'In your cart, you have '
+  if ( getCart().length >= 1 ) {
     cartDescription += `${getCart()[0].itemName} at $${getCart()[0].itemPrice}`
   }
-  if (getCart().length >= 2){
+  if ( getCart().length >= 2 ) {
     var middleCartItemsDescription = ''
-    for (var i=1; i<getCart().length -1; i++){
+    for (var i=1; i<getCart().length -1; i++) {
       middleCartItemsDescription += `, ${getCart()[i].itemName} at $${getCart()[i].itemPrice}`
     }
     cartDescription += `${middleCartItemsDescription}, and ${getCart()[getCart().length-1].itemName} at $${getCart()[getCart().length-1].itemPrice}`
@@ -66,9 +67,9 @@ function generateCartDescription(){
   return `${cartDescription}.`
 }
 
-function searchCartForItemToRemove(itemName){
+function searchCartForItemToRemove(itemName) {
   var searchResult
-  for (var i = 0; i < getCart().length; i++) {
+  for (var i=0; i<getCart().length; i++) {
     if (getCart()[i].itemName === itemName) {searchResult = getCart()[i]}
   }
   return searchResult
@@ -76,7 +77,7 @@ function searchCartForItemToRemove(itemName){
 
 function sumUpPrices() {
   var sum = 0
-  for (var i = 0; i < getCart().length; i++) {
+  for (var i=0; i<getCart().length; i++) {
     sum = sum + getCart()[i].itemPrice
   }
   return sum
