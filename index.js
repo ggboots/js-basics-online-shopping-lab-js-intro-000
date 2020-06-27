@@ -79,7 +79,7 @@ function sumUpPrices() {
   for (var i = 0; i < getCart().length; i++) {
     sum = sum + getCart()[i].itemPrice
   }
-  return sum 
+  return sum
 }
 
 function notifyUserThereIsNoItemToRemove() {
